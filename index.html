@@ -25,9 +25,17 @@
             </div>
             
             <div class="control-group">
-                <label for="gridSizeInput">Grid Size:</label>
+                <label for="gridSizeInput">Square Grid:</label>
                 <input type="number" id="gridSizeInput" min="10" max="200" value="100">
-                <button id="resizeBtn" class="btn btn-small">Resize</button>
+                <button id="resizeSquareBtn" class="btn btn-small">Apply</button>
+            </div>
+            
+            <div class="control-group">
+                <label>Custom Grid (10~200):</label>
+                <input type="number" id="rowsInput" min="10" max="200" value="100" placeholder="Rows">
+                <span>×</span>
+                <input type="number" id="colsInput" min="10" max="200" value="100" placeholder="Cols">
+                <button id="resizeCustomBtn" class="btn btn-small">Apply</button>
             </div>
             
             <div class="control-group">

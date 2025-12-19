@@ -26,7 +26,10 @@ const randomBtn = document.getElementById('randomBtn');
 const speedSlider = document.getElementById('speedSlider');
 const speedValue = document.getElementById('speedValue');
 const gridSizeInput = document.getElementById('gridSizeInput');
-const resizeBtn = document.getElementById('resizeBtn');
+const resizeSquareBtn = document.getElementById('resizeSquareBtn');
+const rowsInput = document.getElementById('rowsInput');
+const colsInput = document.getElementById('colsInput');
+const resizeCustomBtn = document.getElementById('resizeCustomBtn');
 const patternSelect = document.getElementById('patternSelect');
 const loadPatternBtn = document.getElementById('loadPatternBtn');
 const generationDisplay = document.getElementById('generation');
@@ -54,8 +57,21 @@ function createGrid() {
 
 // Resize canvas based on grid size
 function resizeCanvas() {
-    const maxCanvasSize = Math.min(window.innerWidth - 40, 800);
-    cellSize = Math.floor(maxCanvasSize / cols);
+    // Calculate available space for canvas
+    const container = document.querySelector('.container');
+    const h1Height = document.querySelector('h1').offsetHeight;
+    const controlsHeight = document.querySelector('.controls').offsetHeight;
+    const infoHeight = document.querySelector('.info').offsetHeight;
+    const padding = 40; // Total padding/margins
+    
+    const availableHeight = window.innerHeight - h1Height - controlsHeight - infoHeight - padding;
+    const availableWidth = window.innerWidth - 40;
+    
+    // Calculate cell size to fit square cells in available space
+    const cellSizeByWidth = Math.floor(availableWidth / cols);
+    const cellSizeByHeight = Math.floor(availableHeight / rows);
+    cellSize = Math.max(2, Math.min(cellSizeByWidth, cellSizeByHeight));
+    
     canvas.width = cols * cellSize;
     canvas.height = rows * cellSize;
 }
@@ -198,12 +214,27 @@ speedSlider.addEventListener('input', (e) => {
     speedValue.textContent = `${speed} FPS`;
 });
 
-// Grid size control
-resizeBtn.addEventListener('click', () => {
+// Square grid size control
+resizeSquareBtn.addEventListener('click', () => {
     const newSize = parseInt(gridSizeInput.value);
     if (newSize >= 10 && newSize <= 200) {
         rows = newSize;
         cols = newSize;
+        rowsInput.value = newSize;
+        colsInput.value = newSize;
+        resizeCanvas();
+        createGrid();
+        render();
+    }
+});
+
+// Custom grid size control
+resizeCustomBtn.addEventListener('click', () => {
+    const newRows = parseInt(rowsInput.value);
+    const newCols = parseInt(colsInput.value);
+    if (newRows >= 10 && newRows <= 200 && newCols >= 10 && newCols <= 200) {
+        rows = newRows;
+        cols = newCols;
         resizeCanvas();
         createGrid();
         render();
@@ -232,8 +263,12 @@ canvas.addEventListener('mouseleave', () => {
 
 function toggleCell(e) {
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
+    
     const col = Math.floor(x / cellSize);
     const row = Math.floor(y / cellSize);
     
