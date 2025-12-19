@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    color: #e0f7fa;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #64ffda;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.controls {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+label {
+    color: #64ffda;
+    font-weight: 500;
+}
+
+.btn {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #64ffda;
+    border: 1px solid #64ffda;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(100, 255, 218, 0.2);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.4);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    color: #0f2027;
+    border-color: #00cec9;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #00cec9 0%, #00b894 100%);
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+input[type="range"] {
+    width: 150px;
+    height: 6px;
+    background: rgba(100, 255, 218, 0.2);
+    outline: none;
+    border-radius: 3px;
+    -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #64ffda;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #64ffda;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+input[type="number"] {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 80px;
+    font-size: 14px;
+}
+
+select {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+    border: 1px solid rgba(100, 255, 218, 0.3);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+select option {
+    background: #203a43;
+    color: #e0f7fa;
+}
+
+#speedValue {
+    color: #64ffda;
+    font-weight: 600;
+    min-width: 60px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    flex-wrap: wrap;
+}
+
+.info span {
+    color: #b2ebf2;
+    font-size: 14px;
+}
+
+.info strong {
+    color: #64ffda;
+    font-size: 16px;
+}
+
+.tip {
+    color: #80deea !important;
+    font-style: italic;
+    font-size: 12px !important;
+}
+
+#gameCanvas {
+    display: block;
+    margin: 0 auto;
+    background: #0a1929;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 0 50px rgba(100, 255, 218, 0.05);
+    cursor: crosshair;
+    border: 2px solid rgba(100, 255, 218, 0.3);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    
+    .controls {
+        padding: 15px;
+        gap: 15px;
+    }
+    
+    .control-group {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    select {
+        min-width: auto;
+        width: 100%;
+    }
+}
